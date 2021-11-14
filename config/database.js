@@ -12,9 +12,14 @@ module.exports = ({
         database: env('DATABASE_NAME', 'chatDB'),
         username: env('DATABASE_USERNAME', 'db'),
         password: env('DATABASE_PASSWORD', 'lVRIlJojgUzgbWyK'),
-        ssl: { rejectUnauthorized: true },
+        ssl: { rejectUnauthorized: false },
       },
-      options: {}
+        options: { 
+        pool: {
+        acquireTimeoutMillis: 10000,
+        createTimeoutMillis: 10000
+      }
+    },
     },
   },
 });
