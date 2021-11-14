@@ -15,9 +15,23 @@ module.exports = {
           },
           "message": response
         }
+
+        request({
+            "uri": "https://graph.facebook.com/v2.6/me/messages",
+            "qs": { "access_token": page.access_token },
+            "method": "POST",
+            "json": request_body
+          }, (err) => {
+            if (!err) {
+              console.log('message sent!')
+            } else {
+              console.error("Unable to send message:" + err);
+            }
+          }); 
+
       },
 
-     handleMessage(sender_psid, received_message) {
+     handleMessage(sender_psid, received_message,page) {
 
         let response;
       
@@ -31,10 +45,11 @@ module.exports = {
         }  
         
         // Sends the response message
-        this.callSendAPI(sender_psid, response);    
+        this.callSendAPI(sender_psid, response,page);    
       },
-    async webhook(ctx) {
+    async webhook(ctx,page) {
         let body = ctx.request.body;
+        let page_id = page.page_id;
 
      
         if (body.object === 'page') {
@@ -49,7 +64,7 @@ module.exports = {
             console.log('Sender PSID: ' + sender_psid);
 
             if (webhook_event.message) {
-                this.handleMessage(sender_psid, webhook_event.message);        
+                this.handleMessage(sender_psid, webhook_event.message,page);        
               }
             
           });
