@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "pages",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "page_id": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "page_access_token": {
+      "type": "password"
+    },
+    "verify_token": {
+      "type": "password"
+    }
+  }
+}
