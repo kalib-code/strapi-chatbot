@@ -1,4 +1,6 @@
-module.exports = ({ env }) => ({
+module.exports = ({
+  env
+}) => ({
   defaultConnection: 'default',
   connections: {
     default: {
@@ -12,7 +14,15 @@ module.exports = ({ env }) => ({
         password: env('DATABASE_PASSWORD', 'Saltedasin123'),
         ssl: env.bool('DATABASE_SSL', false),
       },
-      options: {}
+      options: {
+        "pool": {
+          "min": 0,
+          "max": 10,
+          "idleTimeoutMillis": 30000,
+          "createTimeoutMillis": 30000,
+          "acquireTimeoutMillis": 30000
+        }
+      }
     },
   },
 });
