@@ -15,6 +15,7 @@ module.exports = () => ({
         password: config.password,
         ssl: {
           rejectUnauthorized: false,
+          ca: process.env.CACERT,
         },
       },
       options: { 
