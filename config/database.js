@@ -13,7 +13,9 @@ module.exports = ({
         username: env('DATABASE_USERNAME', 'api_admin'),
         password: env('DATABASE_PASSWORD', 'Saltedasin123')
       },
-      options: {}
+      options: {
+        ssl: false,
+      },
     },
   },
 });
