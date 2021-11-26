@@ -14,7 +14,9 @@ module.exports = ({
         password: env('DATABASE_PASSWORD', 'Saltedasin123')
       },
       options: {
-        ssl: false,
+        ssl: {
+          ca: env('DATABASE_CA', ""),
+        },
       },
     },
   },
