@@ -1,0 +1,19 @@
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - name: Strapi
+    init: >
+      cd /workspace &&
+      yarn install &&
+      yarn seed &&
+      gp sync-done strapi
+    command: yarn develop
+  - name: Postgress
+    command: pg_start
+ports:
+  - port: 1337
+    onOpen: open-browser
+    visibility: public
+  - port: 5432
+    onOpen: open-browser
+    visibility: public
